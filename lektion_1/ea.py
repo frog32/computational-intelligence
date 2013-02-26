@@ -45,6 +45,13 @@ class World(object):
         d = Fass(b.dna[0:cut] + a.dna[cut:10])
         return c, d
 
+    def mutate(self, ind):
+        dna = ind.dna
+        for i in range(10):
+            if random.randint(1, 10) == 1:
+                dna[i] = not dna[i]
+        return Fass(dna)
+
     def generate_next_generation(self):
         ranking = self.ranking
         print 'ranking', ranking
@@ -64,6 +71,8 @@ class World(object):
         next_round = []
         for i in range(self.count / 2):
             c, d = self.recombinate(selection[random.randint(0, self.count - 1)], selection[random.randint(0, self.count - 1)])
+            c = self.mutate(c)
+            d = self.mutate(d)
             next_round.append(c)
             next_round.append(c)
         self.population = next_round
