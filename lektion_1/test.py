@@ -1,6 +1,6 @@
 import unittest
 
-from ea import Fass
+from ga import Fass
 
 
 class TestConversion(unittest.TestCase):
